@@ -1,14 +1,23 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 function App() {
   return (
     <Container>
+      <GlobalStyle />
       <Button>Hello</Button>
       <Button danger>Hello</Button>
+      <Anchor href="http://www.google.co.kr">Go to google</Anchor>
     </Container>
   );
 }
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    padding: 0;
+    margin: 0;
+  }
+`;
 
 const Container = styled.div`
   height: 100vh;
@@ -29,6 +38,10 @@ const Button = styled.button`
     outline: none;
   }
   background-color: ${props => (props.danger ? "#e74c3c" : "#2ecc71")};
+`;
+
+const Anchor = styled(Button.withComponent("a"))`
+  text-decoration: none;
 `;
 
 export default App;
